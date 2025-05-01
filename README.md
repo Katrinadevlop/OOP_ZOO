@@ -40,6 +40,7 @@
 
  ## UML-диаграмма
 
+```mermaid
 classDiagram
     class Animal {
         <<abstract>>
@@ -103,5 +104,3 @@ classDiagram
     Fish ..|> Swimmable
 
     Zoo --> Animal
-
-    
