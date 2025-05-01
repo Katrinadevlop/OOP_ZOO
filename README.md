@@ -42,65 +42,71 @@
 
 ```mermaid
 classDiagram
-    class Animal {
-        <<abstract>>
-        +String name
-        +Int age
-        +eat()
-        +makeSound()
-        +behaviour()
-    }
 
-    class Bird {
-        +fly()
-        +eat()
-        +makeSound()
-        +behaviour()
-    }
+%% Абстрактный класс
+class Animal {
+    <<abstract>>
+    +String name
+    +Int age
+    +eat()
+    +makeSound()
+    +behaviour()
+}
 
-    class Bear {
-        +walk()
-        +eat()
-        +makeSound()
-        +behaviour()
-    }
+%% Интерфейсы
+class Flyable {
+    <<interface>>
+    +fly()
+}
 
-    class Fish {
-        +swim()
-        +eat()
-        +makeSound()
-        +behaviour()
-    }
+class Walkable {
+    <<interface>>
+    +walk()
+}
 
-    class Zoo {
-        -List~Animal~ animals
-        +addAnimal(animal)
-        +feedAll()
-        +showAllSounds()
-        +showAllActions()
-    }
+class Swimmable {
+    <<interface>>
+    +swim()
+}
 
-    class Flyable {
-        <<interface>>
-        +fly()
-    }
+%% Подклассы
+class Bird {
+    +fly()
+    +eat()
+    +makeSound()
+    +behaviour()
+}
 
-    class Walkable {
-        <<interface>>
-        +walk()
-    }
+class Bear {
+    +walk()
+    +eat()
+    +makeSound()
+    +behaviour()
+}
 
-    class Swimmable {
-        <<interface>>
-        +swim()
-    }
+class Fish {
+    +swim()
+    +eat()
+    +makeSound()
+    +behaviour()
+}
 
-    Animal <|-- Bird
-    Animal <|-- Bear
-    Animal <|-- Fish
+%% Менеджер
+class Zoo {
+    -List~Animal~ animals
+    +addAnimal(animal: Animal)
+    +feedAll()
+    +showAllSounds()
+    +showAllActions()
+}
 
-    Bird ..|> Flyable
-    Bear ..|> Walkable
-    Fish ..|> Swimmable
+%% Связи
+Animal <|-- Bird
+Animal <|-- Bear
+Animal <|-- Fish
 
-    Zoo --> Animal
+Bird ..|> Flyable
+Bear ..|> Walkable
+Fish ..|> Swimmable
+
+Zoo --> Animal
